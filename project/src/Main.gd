@@ -4,15 +4,21 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var xPosition = 0
-	var yPosition = 0
+	var xPosition = 50
+	var yPosition = 50
 	
-	for i in 5:
+	for i in 15:
 		var card = card_scene.instantiate()
 		card.position.x = xPosition
 		card.position.y = yPosition
-		xPosition += 200
-		yPosition += 200
+		card.get_node("Sprite2D").hframes = 9
+		card.get_node("Sprite2D").vframes = 2
+		card.get_node("Sprite2D").frame = i
+		xPosition += 100
+		
+		if(i == 10):
+			xPosition = 50
+			yPosition = 200
 		add_child(card)
 	
 	#pass # Replace with function body.
