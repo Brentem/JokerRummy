@@ -8,23 +8,17 @@ var deck = []
 func _ready():
 	var xPosition = 50
 	var yPosition = 50
-	var xRegion = 50
-
 	var texture = card_scene.instantiate().get_node("Sprite2D").texture
-	var region = Rect2(Vector2(0, 0), Vector2(50, 100))
 	
-	for i in 15:
-		var card = Card.new(CardTypes.Suit.NONE, CardTypes.Symbol.NONE, texture, Vector2(xPosition, yPosition))
-		card._region = region
-		xPosition += 100
-		region.position.x += xRegion
-		
-		if(i == 10):
-			region.position.y = 100
-			region.position.x = 0
-			xPosition = 50
-			yPosition = 200
-		deck.append(card)
+	for i in range(1, 5):
+		for j in 2:
+			for k in range(1, 14):
+				var card = Card.new(i, k, texture, Vector2(xPosition, yPosition))
+				deck.append(card)
+	
+	var joker = Card.new(CardTypes.Suit.NONE, CardTypes.Symbol.JOKER, texture, Vector2(xPosition, yPosition))
+	for i in 4:
+		deck.append(joker)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
