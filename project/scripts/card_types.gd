@@ -4,8 +4,8 @@ enum Suit
 {
 	NONE,
 	HEARTS,
-	DIAMONDS,
 	CLUBS,
+	DIAMONDS,
 	SPADES
 }
 
