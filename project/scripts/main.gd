@@ -3,6 +3,8 @@ extends Node2D
 @export var card_scene : PackedScene
 var positionCounter = 10
 
+var deck : Deck = Deck.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(1, 5):

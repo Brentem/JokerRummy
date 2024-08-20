@@ -27,3 +27,7 @@ enum Symbol
 	ACE,
 	JOKER
 }
+
+class CardTemp:
+	var _suit : Suit = Suit.NONE
+	var _symbol : Symbol = Symbol.NONE
