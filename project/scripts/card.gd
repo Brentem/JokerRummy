@@ -1,5 +1,6 @@
 extends Area2D
 
+const CardInfo = CardTypes.CardInfo
 const Suit = CardTypes.Suit
 const Symbol = CardTypes.Symbol
 
@@ -9,9 +10,9 @@ const _yOffset = 130
 var _suit = Suit.NONE
 var _symbol = Symbol.NONE
 
-func setCardType(suit:Suit, symbol:Symbol):
-	_suit = suit
-	_symbol = symbol
+func SetCardType(cardInfo: CardInfo):
+	_suit = cardInfo._suit
+	_symbol = cardInfo._symbol
 	
 	var x = 0;
 	var y = 0;

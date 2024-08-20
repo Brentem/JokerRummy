@@ -28,6 +28,6 @@ enum Symbol
 	JOKER
 }
 
-class CardTemp:
+class CardInfo:
 	var _suit : Suit = Suit.NONE
 	var _symbol : Symbol = Symbol.NONE
