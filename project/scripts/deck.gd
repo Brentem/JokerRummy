@@ -1,0 +1,30 @@
+extends Node
+
+class_name Deck
+
+const CardInfo = CardTypes.CardInfo
+const Suit = CardTypes.Suit
+const Symbol = CardTypes.Symbol
+
+var _deckElements : Array[CardInfo]= []
+
+func _init():
+	for i in 2:
+		for suitNumber in 4:
+			var suitEnum : Suit = suitNumber + 1
+			for symbolNumber in 13:
+				var symbolEnum : Symbol = symbolNumber + 1
+				var cardInfo := CardInfo.new()
+				cardInfo._suit = suitEnum
+				cardInfo._symbol = symbolEnum
+				_deckElements.append(cardInfo)
+	
+	for i in 4:
+		var joker : CardInfo = CardInfo.new()
+		joker._symbol = Symbol.JOKER
+		_deckElements.append(joker)
+	
+	_deckElements.shuffle()
+
+func GetCardFromDeck() -> CardInfo:
+	return _deckElements.pop_back()
