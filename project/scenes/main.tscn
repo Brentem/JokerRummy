@@ -37,5 +37,5 @@ offset_right = 999.0
 offset_bottom = 461.0
 text = "Turn of"
 
-[connection signal="pressed" from="Button1" to="TurnSystem" method="_on_button_1_pressed"]
-[connection signal="pressed" from="Button2" to="TurnSystem" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button1" to="." method="_on_button_pressed" binds= [0]]
+[connection signal="pressed" from="Button2" to="." method="_on_button_pressed" binds= [1]]
