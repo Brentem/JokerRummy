@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck5jsiitkfbc5"]
-
-[ext_resource type="Script" path="res://src/main.gd" id="1_3dvdb"]
-[ext_resource type="PackedScene" uid="uid://b52jsa505vse7" path="res://src/card.tscn" id="2_pvpci"]
-
-[node name="main" type="Node2D"]
-script = ExtResource("1_3dvdb")
-card_scene = ExtResource("2_pvpci")
