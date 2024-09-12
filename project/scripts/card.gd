@@ -10,6 +10,7 @@ const _yOffset = 130
 var _suit = Suit.NONE
 var _symbol = Symbol.NONE
 
+# TODO: This functions is not used currently.
 func SetCardType(cardInfo: CardInfo):
 	_suit = cardInfo._suit
 	_symbol = cardInfo._symbol

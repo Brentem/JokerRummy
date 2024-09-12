@@ -4,9 +4,6 @@ const stringBase: String = "Turn of "
 const player1Base: String = "Player 1"
 const player2Base: String = "Player 2"
 
-var player1Turn: bool = true
-var player2Turn: bool = false
-
 var players : Array[Player] = []
 var playerStrings : Array[String] = ["Player 1", "Player 2"]
 
@@ -26,12 +23,21 @@ func SwitchTurns(id: int) -> void:
 	if id >= players.size():
 		return
 		
-	if players[id].hasTurn:
+	if players[id].hasTurn and players[id].actionTaken:
 		for player in players:
 			player.hasTurn = false
+			player.actionTaken = false
 		
 		var index := id + 1
 		if index == players.size():
 			index = 0
 			
 		players[index].hasTurn = true
+
+func DeckAction(id: int) -> void:
+	var player := players[id]
+	
+	if player.actionTaken and player.hasTurn:
+		return
+	
+	player.takingCardFromDeck = true

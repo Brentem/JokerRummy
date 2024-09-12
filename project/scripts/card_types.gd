@@ -31,3 +31,5 @@ enum Symbol
 class CardInfo:
 	var _suit : Suit = Suit.NONE
 	var _symbol : Symbol = Symbol.NONE
+	func _to_string() -> String:
+		return "Suit: " + Suit.keys()[_suit] + ", Symbol: " + Symbol.keys()[_symbol]

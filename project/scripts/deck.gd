@@ -7,6 +7,7 @@ const Suit = CardTypes.Suit
 const Symbol = CardTypes.Symbol
 
 var _deckElements : Array[CardInfo]= []
+var _elementTaken : bool = false;
 
 func _init():
 	for i in 2:
@@ -27,4 +28,5 @@ func _init():
 	_deckElements.shuffle()
 
 func GetCardFromDeck() -> CardInfo:
+	_elementTaken = true;
 	return _deckElements.pop_back()
