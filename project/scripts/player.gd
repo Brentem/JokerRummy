@@ -10,6 +10,7 @@ const Symbol = CardTypes.Symbol
 
 var takingCardFromDeck : bool = false
 var puttingCardOnHeap : bool = false
+var layingCardsOnTable : bool = false
 var actionTaken : bool = false
 var allowedToPassTurn : bool = false
 var hasTurn : bool = false

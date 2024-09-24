@@ -53,3 +53,11 @@ func HeapAction(id: int) -> void:
 		return
 	
 	player.puttingCardOnHeap = true
+
+func TableAction(id: int) -> void:
+	var player := players[id]
+	
+	if player.actionTaken and player.hasTurn:
+		return
+		
+	player.layingCardsOnTable = true
