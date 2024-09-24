@@ -63,6 +63,20 @@ offset_right = 1135.0
 offset_bottom = 959.0
 text = "Take Card From Deck"
 
+[node name="HeapButton1" type="Button" parent="Buttons"]
+offset_left = 1158.0
+offset_top = 37.0
+offset_right = 1331.0
+offset_bottom = 68.0
+text = "Put card on heap"
+
+[node name="HeapButton2" type="Button" parent="Buttons"]
+offset_left = 1158.0
+offset_top = 883.0
+offset_right = 1331.0
+offset_bottom = 914.0
+text = "Put card on heap"
+
 [node name="ItemLists" type="Node" parent="."]
 
 [node name="DeckList" type="ItemList" parent="ItemLists"]
@@ -82,12 +96,14 @@ offset_left = 497.0
 offset_top = 7.0
 offset_right = 834.0
 offset_bottom = 186.0
+select_mode = 1
 
 [node name="PlayerTwoList" type="ItemList" parent="ItemLists"]
 offset_left = 488.0
 offset_top = 788.0
 offset_right = 825.0
 offset_bottom = 967.0
+select_mode = 1
 
 [node name="Player1" parent="." instance=ExtResource("3_a3nih")]
 position = Vector2(900, 50)
@@ -99,3 +115,5 @@ position = Vector2(900, 900)
 [connection signal="pressed" from="Buttons/TurnButton2" to="." method="_on_turn_button_pressed" binds= [1]]
 [connection signal="pressed" from="Buttons/DeckButton1" to="." method="_on_action_button_pressed" binds= ["DeckButton", 0]]
 [connection signal="pressed" from="Buttons/DeckButton2" to="." method="_on_action_button_pressed" binds= ["DeckButton", 1]]
+[connection signal="pressed" from="Buttons/HeapButton1" to="." method="_on_action_button_pressed" binds= ["HeapButton", 0]]
+[connection signal="pressed" from="Buttons/HeapButton2" to="." method="_on_action_button_pressed" binds= ["HeapButton", 1]]

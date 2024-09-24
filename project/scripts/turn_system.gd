@@ -23,10 +23,11 @@ func SwitchTurns(id: int) -> void:
 	if id >= players.size():
 		return
 		
-	if players[id].hasTurn and players[id].actionTaken:
+	if players[id].hasTurn and players[id].allowedToPassTurn:
 		for player in players:
 			player.hasTurn = false
 			player.actionTaken = false
+			player.allowedToPassTurn = false
 		
 		var index := id + 1
 		if index == players.size():
@@ -41,3 +42,14 @@ func DeckAction(id: int) -> void:
 		return
 	
 	player.takingCardFromDeck = true
+
+func HeapAction(id: int) -> void:
+	var player := players[id]
+	
+	if !player.actionTaken and player.hasTurn:
+		return
+	
+	if player.allowedToPassTurn:
+		return
+	
+	player.puttingCardOnHeap = true
