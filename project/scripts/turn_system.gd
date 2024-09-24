@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for i in players.size():
 		if players[i].hasTurn:
-			$"../TextEdit".text = stringBase + playerStrings[i]
+			$"../Text/TurnText".text = stringBase + playerStrings[i]
 
 func SwitchTurns(id: int) -> void:
 	if id >= players.size():

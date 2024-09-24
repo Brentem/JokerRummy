@@ -23,8 +23,8 @@ func _ready():
 		#cardTwoPosition.x += 130
 	# NOTE: End of code to add card sprites to scene
 	
-	playerList.append($PlayerOneList)
-	playerList.append($PlayerTwoList)
+	playerList.append($ItemLists/PlayerOneList)
+	playerList.append($ItemLists/PlayerTwoList)
 	
 	for i in 13:
 		playerList[0].add_item(deck.GetCardFromDeck().to_string())
@@ -40,9 +40,9 @@ func _process(delta):
 
 	if deck._elementTaken:
 		deck._elementTaken = false
-		$DeckList.clear()
+		$ItemLists/DeckList.clear()
 		for element in deck._deckElements:
-			$DeckList.add_item(element.to_string());
+			$ItemLists/DeckList.add_item(element.to_string());
 
 func _on_turn_button_pressed(id: int) -> void:
 	$TurnSystem.SwitchTurns(id)
