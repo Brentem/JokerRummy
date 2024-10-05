@@ -66,7 +66,7 @@ func _process(delta):
 		elif $TurnSystem.players[i].layingCardsOnTable:
 			var ids := playerCardsSelected(i)
 			for id in ids:
-				tableCards.append(playerCards[i][id])
+				tableCards.append(createCardInfoCopy(playerCards[i][id]))
 				playerCards[i][id]._suit = Suit.NONE
 				playerCards[i][id]._symbol = Symbol.NONE
 			var count := 0
@@ -75,6 +75,7 @@ func _process(delta):
 				count += 1
 			$TurnSystem.players[i].layingCardsOnTable = false
 			$TurnSystem.players[i].actionTaken = true
+			loadLists = true
 
 	if deck._elementTaken:
 		deck._elementTaken = false
@@ -115,3 +116,9 @@ func playerCardsSelected(playerId:) -> Array[int]:
 			val.append(i)
 	
 	return val
+
+func createCardInfoCopy(src: CardInfo) -> CardInfo:
+	var dest := CardInfo.new()
+	dest._suit = src._suit
+	dest._symbol = src._symbol
+	return dest
