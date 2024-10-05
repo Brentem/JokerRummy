@@ -20,3 +20,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _on_button_pressed(extra_arg_0: int) -> void:
+	$TurnSystem.SwitchTurns(extra_arg_0)

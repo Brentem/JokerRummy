@@ -1,10 +1,14 @@
 extends Node2D
 
+class_name Player
+
 @export var card_scene : PackedScene
 
 const CardInfo = CardTypes.CardInfo
 const Suit = CardTypes.Suit
 const Symbol = CardTypes.Symbol
+
+var hasTurn : bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
