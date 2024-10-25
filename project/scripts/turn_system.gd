@@ -7,6 +7,8 @@ const player2Base: String = "Player 2"
 var players : Array[Player] = []
 var playerStrings : Array[String] = ["Player 1", "Player 2"]
 
+var currentPlayerId : int = 0 #TODO: Use this variable
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	players.append($"../Player1")

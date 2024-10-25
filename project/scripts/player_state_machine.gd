@@ -1,24 +1,34 @@
 extends Node
 
 const State := Player.State
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+const Event := Main.Event
 
 #TODO: Maybe pass event enum, for instate DeckButtonEvent
-func Run(player: Player) -> void:
+func Run(player: Player, event: Event) -> void:
 	match player.state:
 		State.Idle:
 			pass #TODO: Implement
 		State.PickingCards:
-			pass #TODO: Implement
+			handlePickingCardsState(player, event)
 		State.LayingCards:
-			pass #TODO: Implement
+			handleLayingCardsState(player, event)
 		State.TurnIsOver:
 			pass #TODO: Implement
+
+func handlePickingCardsState(player: Player, event: Event) -> void:
+	if event == Event.PickDeckButtonEvent:
+		player.state = State.LayingCards
+		$"..".TakeCardFromDeck() #NOTE: $".." = Main node
+	elif event == Event.PickHeapButtonEvent:
+		pass #TODO: Implement
+
+func handleLayingCardsState(player: Player, event: Event) -> void:
+	if event == Event.LayTableButtonEvent:
+		$"..".LayCardsOnTable() #NOTE: $".." = Main node
+	elif event == Event.LayHeapButtonEvent:
+		player.state = State.TurnIsOver
+		$"..".PutCardOnHeap() #NOTE: $".." = Main node
+
+func handleTurnIsOverState(player: Player, event: Event) -> void:
+	if event == Event.TurnButtonEvent:
+		pass

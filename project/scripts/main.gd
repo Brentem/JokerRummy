@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Main
+
 const CardInfo = CardTypes.CardInfo
 const Suit = CardTypes.Suit
 const Symbol = CardTypes.Symbol
@@ -10,6 +12,16 @@ const DeckButton := "DeckButton"
 const HeapButton := "HeapButton"
 const TableButton := "TableButton"
 
+enum Event
+{
+	NoEvent,
+	PickDeckButtonEvent,
+	PickHeapButtonEvent, #TODO: Make use of this
+	LayTableButtonEvent,
+	LayHeapButtonEvent,
+	TurnButtonEvent
+}
+
 var deck : Deck = Deck.new()
 var players : Array[Player] = []
 var playerList : Array[ItemList] = []
@@ -17,6 +29,8 @@ var playerCards := []
 var heapCards : Array[CardInfo] = []
 var tableCards : Array[CardInfo] = []
 var loadLists : bool = false
+
+var eventQueue : Array[Event] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,8 +54,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# TODO: This will do nothing yet.
+	var event : Event = Event.NoEvent if eventQueue.is_empty() else eventQueue.pop_front()
 	for player in players:
-		$PlayerStateMachine.Run(player)
+		$PlayerStateMachine.Run(player, event)
 	
 	if loadLists:
 		loadLists = false
@@ -135,3 +150,14 @@ func createCardInfoCopy(src: CardInfo) -> CardInfo:
 	dest._suit = src._suit
 	dest._symbol = src._symbol
 	return dest
+
+func TakeCardFromDeck() -> void:
+	var playerId : int = $TurnSystem.currentPlayerId
+	playerCards[playerId].append(deck.GetCardFromDeck())
+	loadLists = true
+	
+func PutCardOnHeap() -> void:
+	pass
+	
+func LayCardsOnTable() -> void:
+	pass
