@@ -11,6 +11,7 @@ const HeapButton := "HeapButton"
 const TableButton := "TableButton"
 
 var deck : Deck = Deck.new()
+var players : Array[Player] = []
 var playerList : Array[ItemList] = []
 var playerCards := []
 var heapCards : Array[CardInfo] = []
@@ -19,6 +20,9 @@ var loadLists : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	players.append($Player1)
+	players.append($Player2)
+	
 	playerList.append($ItemLists/PlayerOneList)
 	playerList.append($ItemLists/PlayerTwoList)
 	
@@ -35,6 +39,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# TODO: This will do nothing yet.
+	for player in players:
+		$PlayerStateMachine.Run(player)
+	
 	if loadLists:
 		loadLists = false
 		for i in $TurnSystem.players.size():
@@ -51,11 +59,15 @@ func _process(delta):
 			$ItemLists/TableList.add_item(item.to_string())
 	
 	for i in $TurnSystem.players.size():
+		#NOTE: This is part of player PickingCards state
 		if $TurnSystem.players[i].takingCardFromDeck:
+			#NOTE: Perhaps handle DeckButtonEvent in state
+			#NOTE: Perhaps handle HeapButtonEvent in state
 			playerCards[i].append(deck.GetCardFromDeck())
 			loadLists = true
 			$TurnSystem.players[i].actionTaken = true
 			$TurnSystem.players[i].takingCardFromDeck = false
+		#NOTE: This is part of LayingCards state & trigger for TurnIsOver state
 		elif $TurnSystem.players[i].puttingCardOnHeap:
 			var id := playerCardSelected(i)
 			var card : CardInfo = playerCards[i].pop_at(id)
@@ -63,6 +75,7 @@ func _process(delta):
 			loadLists = true
 			$TurnSystem.players[i].puttingCardOnHeap = false
 			$TurnSystem.players[i].allowedToPassTurn = true
+		#NOTE: This is part of LayingCards state
 		elif $TurnSystem.players[i].layingCardsOnTable:
 			var ids := playerCardsSelected(i)
 			for id in ids:
