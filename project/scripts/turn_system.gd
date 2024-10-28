@@ -7,7 +7,7 @@ const player2Base: String = "Player 2"
 var players : Array[Player] = []
 var playerStrings : Array[String] = ["Player 1", "Player 2"]
 
-var currentPlayerId : int = 0 #TODO: Use this variable
+var playerId : int = 0 #TODO: Use this variable
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,45 +21,13 @@ func _process(delta: float) -> void:
 		if players[i].hasTurn:
 			$"../Text/TurnText".text = stringBase + playerStrings[i]
 
-func SwitchTurns(id: int) -> void:
-	if id >= players.size():
-		return
-		
-	if players[id].hasTurn and players[id].allowedToPassTurn:
-		for player in players:
-			player.hasTurn = false
-			player.actionTaken = false
-			player.allowedToPassTurn = false
-		
-		var index := id + 1
-		if index == players.size():
-			index = 0
-			
-		players[index].hasTurn = true
-
-func DeckAction(id: int) -> void:
-	var player := players[id]
+func SwitchTurns() -> void:
+	players[playerId].state = Player.State.Idle
+	players[playerId].hasTurn = false
+	playerId += 1
 	
-	if player.actionTaken and player.hasTurn:
-		return
+	if playerId >= players.size():
+		playerId = 0
 	
-	player.takingCardFromDeck = true
-
-func HeapAction(id: int) -> void:
-	var player := players[id]
-	
-	if !player.actionTaken and player.hasTurn:
-		return
-	
-	if player.allowedToPassTurn:
-		return
-	
-	player.puttingCardOnHeap = true
-
-func TableAction(id: int) -> void:
-	var player := players[id]
-	
-	if player.actionTaken and player.hasTurn:
-		return
-		
-	player.layingCardsOnTable = true
+	players[playerId].state = Player.State.PickingCards
+	players[playerId].hasTurn = true

@@ -8,11 +8,7 @@ const CardInfo = CardTypes.CardInfo
 const Suit = CardTypes.Suit
 const Symbol = CardTypes.Symbol
 
-var takingCardFromDeck : bool = false
-var puttingCardOnHeap : bool = false
-var layingCardsOnTable : bool = false
-var actionTaken : bool = false
-var allowedToPassTurn : bool = false
+# TODO: Make it so that this variable isn't necesary anymore.
 var hasTurn : bool = false
 
 enum State

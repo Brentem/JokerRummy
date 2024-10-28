@@ -13,7 +13,7 @@ func Run(player: Player, event: Event) -> void:
 		State.LayingCards:
 			handleLayingCardsState(player, event)
 		State.TurnIsOver:
-			pass #TODO: Implement
+			handleTurnIsOverState(player, event)
 
 func handlePickingCardsState(player: Player, event: Event) -> void:
 	if event == Event.PickDeckButtonEvent:
@@ -31,4 +31,4 @@ func handleLayingCardsState(player: Player, event: Event) -> void:
 
 func handleTurnIsOverState(player: Player, event: Event) -> void:
 	if event == Event.TurnButtonEvent:
-		pass
+		$"../TurnSystem".SwitchTurns()

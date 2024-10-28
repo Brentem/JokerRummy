@@ -50,13 +50,15 @@ func _ready():
 	
 	heapCards.append(deck.GetCardFromDeck())
 	loadLists = true
+	
+	# TODO: Probably find a better way to do this.
+	players[0].state = Player.State.PickingCards
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# TODO: This will do nothing yet.
+	var playerId : int = $TurnSystem.playerId
 	var event : Event = Event.NoEvent if eventQueue.is_empty() else eventQueue.pop_front()
-	for player in players:
-		$PlayerStateMachine.Run(player, event)
+	$PlayerStateMachine.Run(players[playerId], event)
 	
 	if loadLists:
 		loadLists = false
@@ -72,38 +74,6 @@ func _process(delta):
 		$ItemLists/TableList.clear()
 		for item in tableCards:
 			$ItemLists/TableList.add_item(item.to_string())
-	
-	for i in $TurnSystem.players.size():
-		#NOTE: This is part of player PickingCards state
-		if $TurnSystem.players[i].takingCardFromDeck:
-			#NOTE: Perhaps handle DeckButtonEvent in state
-			#NOTE: Perhaps handle HeapButtonEvent in state
-			playerCards[i].append(deck.GetCardFromDeck())
-			loadLists = true
-			$TurnSystem.players[i].actionTaken = true
-			$TurnSystem.players[i].takingCardFromDeck = false
-		#NOTE: This is part of LayingCards state & trigger for TurnIsOver state
-		elif $TurnSystem.players[i].puttingCardOnHeap:
-			var id := playerCardSelected(i)
-			var card : CardInfo = playerCards[i].pop_at(id)
-			heapCards.append(card)
-			loadLists = true
-			$TurnSystem.players[i].puttingCardOnHeap = false
-			$TurnSystem.players[i].allowedToPassTurn = true
-		#NOTE: This is part of LayingCards state
-		elif $TurnSystem.players[i].layingCardsOnTable:
-			var ids := playerCardsSelected(i)
-			for id in ids:
-				tableCards.append(createCardInfoCopy(playerCards[i][id]))
-				playerCards[i][id]._suit = Suit.NONE
-				playerCards[i][id]._symbol = Symbol.NONE
-			var count := 0
-			for id in ids:
-				playerCards[i].remove_at(id - count)
-				count += 1
-			$TurnSystem.players[i].layingCardsOnTable = false
-			$TurnSystem.players[i].actionTaken = true
-			loadLists = true
 
 	if deck._elementTaken:
 		deck._elementTaken = false
@@ -112,15 +82,21 @@ func _process(delta):
 			$ItemLists/DeckList.add_item(element.to_string());
 
 func _on_turn_button_pressed(id: int) -> void:
-	$TurnSystem.SwitchTurns(id)
+	if id != $TurnSystem.playerId:
+		return;
+	
+	eventQueue.append(Event.TurnButtonEvent)
 
 func _on_action_button_pressed(button_type: String, id: int) -> void:
+	if id != $TurnSystem.playerId:
+		return;
+	
 	if button_type == DeckButton:
-		$TurnSystem.DeckAction(id)
+		eventQueue.append(Event.PickDeckButtonEvent)
 	elif button_type == HeapButton:
-		$TurnSystem.HeapAction(id)
+		eventQueue.append(Event.LayHeapButtonEvent)
 	elif button_type == TableButton:
-		$TurnSystem.TableAction(id)
+		eventQueue.append(Event.LayTableButtonEvent)
 
 func playerCardSelected(playerId: int) -> int:
 	var count := 0
@@ -152,12 +128,26 @@ func createCardInfoCopy(src: CardInfo) -> CardInfo:
 	return dest
 
 func TakeCardFromDeck() -> void:
-	var playerId : int = $TurnSystem.currentPlayerId
+	var playerId : int = $TurnSystem.playerId
 	playerCards[playerId].append(deck.GetCardFromDeck())
 	loadLists = true
 	
 func PutCardOnHeap() -> void:
-	pass
+	var playerId = $TurnSystem.playerId
+	var cardId := playerCardSelected(playerId)
+	var card : CardInfo = playerCards[playerId].pop_at(cardId)
+	heapCards.append(card)
+	loadLists = true
 	
 func LayCardsOnTable() -> void:
-	pass
+	var playerId : int = $TurnSystem.playerId
+	var cardIds := playerCardsSelected(playerId)
+	for id in cardIds:
+		tableCards.append(createCardInfoCopy(playerCards[playerId][id]))
+		playerCards[playerId][id]._suit = Suit.NONE
+		playerCards[playerId][id]._symbol = Symbol.NONE
+	var count := 0
+	for id in cardIds:
+		playerCards[playerId].remove_at(id - count)
+		count += 1
+	loadLists = true
