@@ -1,18 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck5jsiitkfbc5"]
+[gd_scene load_steps=3 format=3 uid="uid://ck5jsiitkfbc5"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_kbhkh"]
-[ext_resource type="Script" path="res://scripts/turn_system.gd" id="2_t2eeq"]
-[ext_resource type="Script" path="res://scripts/player_state_machine.gd" id="3_5s17y"]
 [ext_resource type="PackedScene" uid="uid://bq4lsgxharv4m" path="res://scenes/player.tscn" id="3_a3nih"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_kbhkh")
-
-[node name="TurnSystem" type="Node" parent="."]
-script = ExtResource("2_t2eeq")
-
-[node name="PlayerStateMachine" type="Node" parent="."]
-script = ExtResource("3_5s17y")
 
 [node name="Text" type="Node" parent="."]
 
