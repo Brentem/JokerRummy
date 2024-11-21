@@ -1,6 +1,5 @@
-extends Node
-
 class_name Deck
+extends Node
 
 const CardInfo = CardTypes.CardInfo
 const Suit = CardTypes.Suit
