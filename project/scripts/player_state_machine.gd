@@ -14,7 +14,6 @@ func _init(players : Array[Player], uiLogic: UILogic):
 	_uiLogic = uiLogic
 
 func Run(event: Event) -> void:
-	#match player.state:
 	var player : Player = _players[_playerId]
 	match player.state:
 		State.Idle:
