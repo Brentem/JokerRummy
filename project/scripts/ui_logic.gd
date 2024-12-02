@@ -36,6 +36,7 @@ func _init(deck: Deck, playerList : Array[ItemList],
 	
 	_heapCards.append(_deck.GetCardFromDeck())
 
+# Public functions:
 func Load() -> void:
 	if _load == false:
 		return
@@ -81,6 +82,16 @@ func LayCardsOnTable(playerId: int) -> void:
 		count += 1
 	_load = true
 
+func TradeHeap(playerId: int) -> void:
+	var cardId := playerCardSelected(playerId)
+	var selectedCard : CardInfo = _playerCards[playerId].pop_at(cardId)
+	var heapCard : CardInfo = _heapCards.pop_front()
+	
+	_heapCards.append(selectedCard)
+	_playerCards[playerId].append(heapCard)
+	_load = true
+
+# Private functions:
 func playerCardSelected(playerId: int) -> int:
 	var count := 0
 	var val := 0

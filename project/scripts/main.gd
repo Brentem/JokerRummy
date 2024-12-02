@@ -10,12 +10,14 @@ const cardOffset := 150
 const DeckButton := "DeckButton"
 const HeapButton := "HeapButton"
 const TableButton := "TableButton"
+const TradeHeapButton := "TradeHeapButton"
 
 enum Event
 {
 	NoEvent,
 	PickDeckButtonEvent,
 	PickHeapButtonEvent, #TODO: Make use of this
+	TradeHeapButtonEvent, #TODO: Make use of this
 	LayTableButtonEvent,
 	LayHeapButtonEvent,
 	TurnButtonEvent
@@ -66,3 +68,5 @@ func _on_action_button_pressed(button_type: String, id: int) -> void:
 		eventQueue.append(Event.LayHeapButtonEvent)
 	elif button_type == TableButton:
 		eventQueue.append(Event.LayTableButtonEvent)
+	elif button_type == TradeHeapButton:
+		eventQueue.append(Event.TradeHeapButtonEvent)
