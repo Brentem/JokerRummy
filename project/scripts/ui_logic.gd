@@ -72,6 +72,15 @@ func PutCardOnHeap(playerId: int) -> void:
 	
 func LayCardsOnTable(playerId: int) -> void:
 	var cardIds := playerCardsSelected(playerId)
+	var cards : Array[CardInfo]
+	
+	for cardId in cardIds:
+		cards.append(createCardInfoCopy(_playerCards[playerId][cardId]))
+	
+	# TODO: Check if cards are allowed to be placed on the table
+	var layCardsOnTable = CardLogic.foo(cards)
+	
+	# Put cards on table
 	for cardId in cardIds:
 		_tableCards.append(createCardInfoCopy(_playerCards[playerId][cardId]))
 		_playerCards[playerId][cardId]._suit = Suit.NONE
