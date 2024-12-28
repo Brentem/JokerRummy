@@ -97,6 +97,20 @@ offset_right = 1307.0
 offset_bottom = 959.0
 text = "Lay cards on table"
 
+[node name="TradeHeapButton1" type="Button" parent="Buttons"]
+offset_left = 960.0
+offset_top = 128.0
+offset_right = 1058.0
+offset_bottom = 159.0
+text = "Trade Heap"
+
+[node name="TradeHeapButton2" type="Button" parent="Buttons"]
+offset_left = 962.0
+offset_top = 840.0
+offset_right = 1060.0
+offset_bottom = 871.0
+text = "Trade Heap"
+
 [node name="ItemLists" type="Node" parent="."]
 
 [node name="DeckList" type="ItemList" parent="ItemLists"]
@@ -145,3 +159,5 @@ position = Vector2(900, 900)
 [connection signal="pressed" from="Buttons/HeapButton2" to="." method="_on_action_button_pressed" binds= ["HeapButton", 1]]
 [connection signal="pressed" from="Buttons/TableButton1" to="." method="_on_action_button_pressed" binds= ["TableButton", 0]]
 [connection signal="pressed" from="Buttons/TableButton2" to="." method="_on_action_button_pressed" binds= ["TableButton", 1]]
+[connection signal="pressed" from="Buttons/TradeHeapButton1" to="." method="_on_action_button_pressed" binds= ["TradeHeapButton", 0]]
+[connection signal="pressed" from="Buttons/TradeHeapButton2" to="." method="_on_action_button_pressed" binds= ["TradeHeapButton", 1]]

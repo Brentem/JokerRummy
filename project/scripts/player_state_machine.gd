@@ -7,6 +7,7 @@ const Event := Main.Event
 var _uiLogic : UILogic
 var _players : Array[Player] = []
 var _playerId : int = 0
+var _tradeHeap : bool = true
 
 func _init(players : Array[Player], uiLogic: UILogic):
 	_players = players
@@ -33,8 +34,12 @@ func handlePickingCardsState(player: Player, event: Event) -> void:
 	if event == Event.PickDeckButtonEvent:
 		player.state = State.LayingCards
 		_uiLogic.TakeCardFromDeck(_playerId)
-	elif event == Event.PickHeapButtonEvent:
+		_tradeHeap = false
+	elif (event == Event.PickHeapButtonEvent) && !_tradeHeap:
 		pass #TODO: Implement
+	elif (event == Event.TradeHeapButtonEvent) && _tradeHeap:
+		_uiLogic.TradeHeap(_playerId)
+		player.state = State.TurnIsOver
 
 func handleLayingCardsState(player: Player, event: Event) -> void:
 	if event == Event.LayTableButtonEvent:
