@@ -80,6 +80,9 @@ func LayCardsOnTable(playerId: int) -> void:
 	# TODO: Check if cards are allowed to be placed on the table
 	var layCardsOnTable = CardLogic.foo(cards)
 	
+	if !layCardsOnTable:
+		return
+	
 	# Put cards on table
 	for cardId in cardIds:
 		_tableCards.append(createCardInfoCopy(_playerCards[playerId][cardId]))
