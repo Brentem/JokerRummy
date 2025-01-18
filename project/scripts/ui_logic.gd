@@ -19,7 +19,8 @@ var _deckList : ItemList
 var _load : bool = true;
 
 func _init(deck: Deck, playerList : Array[ItemList],
- heapList: ItemList, tableList: ItemList, deckList: ItemList):
+ heapList: ItemList, tableList: ItemList, 
+ deckList: ItemList, debug: bool):
 	_deck = deck
 	_playerList = playerList
 	_heapList = heapList
@@ -30,9 +31,16 @@ func _init(deck: Deck, playerList : Array[ItemList],
 	_playerCards.append(test.duplicate(true))
 	_playerCards.append(test.duplicate(true))
 	
-	for i in 13:
-		_playerCards[0].append(_deck.GetCardFromDeck())
-		_playerCards[1].append(_deck.GetCardFromDeck())
+	if debug:
+		for i in 13:
+			_playerCards[0].append(_deck.GetCardFromDeck())
+			
+		for i in 13:
+			_playerCards[1].append(_deck.GetCardFromDeck())
+	else:
+		for i in 13:
+			_playerCards[0].append(_deck.GetCardFromDeck())
+			_playerCards[1].append(_deck.GetCardFromDeck())
 	
 	_heapCards.append(_deck.GetCardFromDeck())
 
@@ -77,8 +85,7 @@ func LayCardsOnTable(playerId: int) -> void:
 	for cardId in cardIds:
 		cards.append(createCardInfoCopy(_playerCards[playerId][cardId]))
 	
-	# TODO: Check if cards are allowed to be placed on the table
-	var layCardsOnTable = CardLogic.foo(cards)
+	var layCardsOnTable = CardLogic.CardPlacementValid(cards)
 	
 	if !layCardsOnTable:
 		return
@@ -102,6 +109,14 @@ func TradeHeap(playerId: int) -> void:
 	_heapCards.append(selectedCard)
 	_playerCards[playerId].append(heapCard)
 	_load = true
+
+func Reset() -> void:
+	_heapList.clear()
+	_tableList.clear()
+	_deckList.clear()
+	
+	for playerList in _playerList:
+		playerList.clear()
 
 # Private functions:
 func playerCardSelected(playerId: int) -> int:

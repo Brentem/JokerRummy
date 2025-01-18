@@ -111,6 +111,13 @@ offset_right = 1060.0
 offset_bottom = 871.0
 text = "Trade Heap"
 
+[node name="DebugButton" type="Button" parent="Buttons"]
+offset_left = 193.0
+offset_top = 209.0
+offset_right = 251.0
+offset_bottom = 240.0
+text = "Debug"
+
 [node name="ItemLists" type="Node" parent="."]
 
 [node name="DeckList" type="ItemList" parent="ItemLists"]
@@ -161,3 +168,4 @@ position = Vector2(900, 900)
 [connection signal="pressed" from="Buttons/TableButton2" to="." method="_on_action_button_pressed" binds= ["TableButton", 1]]
 [connection signal="pressed" from="Buttons/TradeHeapButton1" to="." method="_on_action_button_pressed" binds= ["TradeHeapButton", 0]]
 [connection signal="pressed" from="Buttons/TradeHeapButton2" to="." method="_on_action_button_pressed" binds= ["TradeHeapButton", 1]]
+[connection signal="pressed" from="Buttons/DebugButton" to="." method="_on_debug_button_pressed"]

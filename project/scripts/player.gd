@@ -17,10 +17,4 @@ enum State
 }
 
 var state : State = State.Idle
-
-# NOTE: This functions is not used currently.
-func AddCard(cardInfo: CardInfo, position: Vector2) -> void:
-	var card = card_scene.instantiate()
-	card.SetCardType(cardInfo)
-	card.position = position
-	add_child(card)
+var hasWon : bool = false

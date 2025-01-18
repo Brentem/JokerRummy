@@ -45,6 +45,7 @@ func handleLayingCardsState(player: Player, event: Event) -> void:
 	if event == Event.LayTableButtonEvent:
 		_uiLogic.LayCardsOnTable(_playerId)
 	elif event == Event.LayHeapButtonEvent:
+		player.hasWon = (_uiLogic._playerCards[_playerId].size() == 1)
 		player.state = State.TurnIsOver
 		_uiLogic.PutCardOnHeap(_playerId)
 
