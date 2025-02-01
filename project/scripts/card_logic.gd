@@ -7,8 +7,9 @@ const Symbol = CardTypes.Symbol
 
 const QuartetSize : int = 4
 const QuartetMinimumSize : int = 3
+const SeriesMinimumSize : int = 3
 
-static func foo(cards: Array[CardInfo]) -> bool:
+static func CardPlacementValid(cards: Array[CardInfo]) -> bool:
 	# TODO: 40 points already laid out or not?
 	
 	return _isQuartet(cards) || _isSeries(cards)
@@ -44,6 +45,9 @@ static func _isQuartet(cards: Array[CardInfo]) -> bool:
 	return retVal
 
 static func _isSeries(cards: Array[CardInfo]) -> bool:
+	if cards.size() < SeriesMinimumSize:
+		return false
+	
 	var sorted := _sortCards(cards)
 	if !sorted:
 		return false

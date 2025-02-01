@@ -17,7 +17,7 @@ enum Event
 	NoEvent,
 	PickDeckButtonEvent,
 	PickHeapButtonEvent, #TODO: Make use of this
-	TradeHeapButtonEvent, #TODO: Make use of this
+	TradeHeapButtonEvent,
 	LayTableButtonEvent,
 	LayHeapButtonEvent,
 	TurnButtonEvent
@@ -31,24 +31,25 @@ var eventQueue : Array[Event] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var playerList : Array[ItemList]
-	playerList.append($ItemLists/PlayerOneList)
-	playerList.append($ItemLists/PlayerTwoList)
-	
-	var deck : Deck = Deck.new()
-	uiLogic = UILogic.new(deck, playerList, $ItemLists/HeapList, $ItemLists/TableList, $ItemLists/DeckList)
-	
-	var players : Array[Player]
-	players.append($Player1)
-	players.append($Player2)
-	playerStateMachine = PlayerStateMachine.new(players, uiLogic)
+	debugInit(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var event : Event = Event.NoEvent if eventQueue.is_empty() else eventQueue.pop_front()
-	playerStateMachine.Run(event)
+	var gameOver : bool = false
+	var winnerId : int = 0
 	
-	guiController.SetTurnText($Text/TurnText, playerStateMachine.GetCurrentPlayerId())
+	for i in playerStateMachine._players.size():
+		if playerStateMachine._players[i].hasWon:
+			gameOver = true
+			winnerId = i
+	
+	if !gameOver:
+		var event : Event = Event.NoEvent if eventQueue.is_empty() else eventQueue.pop_front()
+		playerStateMachine.Run(event)
+	
+		guiController.SetTurnText($Text/TurnText, playerStateMachine.GetCurrentPlayerId())
+	else:
+		guiController.SetWinningText($Text/TurnText, winnerId)
 	
 	uiLogic.Load()
 
@@ -70,3 +71,21 @@ func _on_action_button_pressed(button_type: String, id: int) -> void:
 		eventQueue.append(Event.LayTableButtonEvent)
 	elif button_type == TradeHeapButton:
 		eventQueue.append(Event.TradeHeapButtonEvent)
+
+
+func _on_debug_button_pressed() -> void:
+	uiLogic.Reset()
+	debugInit(true)
+
+func debugInit(debug: bool) -> void:
+	var playerList : Array[ItemList]
+	playerList.append($ItemLists/PlayerOneList)
+	playerList.append($ItemLists/PlayerTwoList)
+	
+	var deck : Deck = Deck.new(!debug)
+	uiLogic = UILogic.new(deck, playerList, $ItemLists/HeapList, $ItemLists/TableList, $ItemLists/DeckList, debug)
+	
+	var players : Array[Player]
+	players.append($Player1)
+	players.append($Player2)
+	playerStateMachine = PlayerStateMachine.new(players, uiLogic)

@@ -8,7 +8,17 @@ const Symbol = CardTypes.Symbol
 var _deckElements : Array[CardInfo]= []
 var _elementTaken : bool = false;
 
-func _init():
+func _init(shuffle : bool):
+	fillDeckElements()
+	
+	if shuffle:
+		_deckElements.shuffle()
+
+func GetCardFromDeck() -> CardInfo:
+	_elementTaken = true;
+	return _deckElements.pop_back()
+
+func fillDeckElements() -> void:
 	for i in 2:
 		for suitNumber in 4:
 			var suitEnum : Suit = suitNumber + 1
@@ -23,9 +33,3 @@ func _init():
 		var joker : CardInfo = CardInfo.new()
 		joker._symbol = Symbol.JOKER
 		_deckElements.append(joker)
-	
-	_deckElements.shuffle()
-
-func GetCardFromDeck() -> CardInfo:
-	_elementTaken = true;
-	return _deckElements.pop_back()
