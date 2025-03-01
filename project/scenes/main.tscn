@@ -1,16 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ck5jsiitkfbc5"]
+[gd_scene load_steps=3 format=3 uid="uid://ck5jsiitkfbc5"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_kbhkh"]
-[ext_resource type="Texture2D" uid="uid://bxfq7pmplh5c6" path="res://assets/cards.png" id="2_eadsg"]
 [ext_resource type="PackedScene" uid="uid://bq4lsgxharv4m" path="res://scenes/player.tscn" id="3_a3nih"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjh0c"]
-atlas = ExtResource("2_eadsg")
-region = Rect2(943.132, 254.846, 107.438, 138.913)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bhtwl"]
-atlas = ExtResource("2_eadsg")
-region = Rect2(104, 132, 104, 132)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_kbhkh")
@@ -18,24 +9,24 @@ script = ExtResource("1_kbhkh")
 [node name="Text" type="Node" parent="."]
 
 [node name="HeapText" type="TextEdit" parent="Text"]
-offset_left = 712.0
-offset_top = 320.0
-offset_right = 768.0
-offset_bottom = 360.0
+offset_left = 384.0
+offset_top = 192.0
+offset_right = 440.0
+offset_bottom = 232.0
 text = "Heap:"
 
 [node name="DeckText" type="TextEdit" parent="Text"]
-offset_left = 1102.0
-offset_top = 320.0
-offset_right = 1158.0
-offset_bottom = 360.0
+offset_left = 704.0
+offset_top = 184.0
+offset_right = 760.0
+offset_bottom = 224.0
 text = "Deck:"
 
 [node name="TurnText" type="TextEdit" parent="Text"]
-offset_left = 1522.0
-offset_top = 414.0
-offset_right = 1720.0
-offset_bottom = 446.0
+offset_left = 932.0
+offset_top = 160.0
+offset_right = 1130.0
+offset_bottom = 192.0
 text = "Turn of"
 
 [node name="TableText" type="TextEdit" parent="Text"]
@@ -43,147 +34,128 @@ anchors_preset = -1
 anchor_right = 0.014
 anchor_bottom = 0.025
 offset_left = 64.0
-offset_top = 320.0
+offset_top = 192.0
 offset_right = 103.872
-offset_bottom = 343.8
+offset_bottom = 215.8
 text = "Table:"
 
 [node name="Buttons" type="Node" parent="."]
 
 [node name="TurnButton1" type="Button" parent="Buttons"]
-offset_left = 950.0
-offset_top = 37.0
-offset_right = 1094.0
-offset_bottom = 68.0
+offset_left = 448.0
+offset_top = 32.0
+offset_right = 592.0
+offset_bottom = 63.0
 text = "End Turn Player 1"
 
 [node name="TurnButton2" type="Button" parent="Buttons"]
-offset_left = 962.0
-offset_top = 883.0
-offset_right = 1106.0
-offset_bottom = 914.0
+offset_left = 446.0
+offset_top = 539.0
+offset_right = 590.0
+offset_bottom = 570.0
 text = "End Turn Player 2"
 
 [node name="DeckButton1" type="Button" parent="Buttons"]
-offset_left = 955.0
-offset_top = 84.0
-offset_right = 1128.0
-offset_bottom = 115.0
+offset_left = 448.0
+offset_top = 77.0
+offset_right = 621.0
+offset_bottom = 108.0
 text = "Take Card From Deck"
 
 [node name="DeckButton2" type="Button" parent="Buttons"]
-offset_left = 962.0
-offset_top = 928.0
-offset_right = 1135.0
-offset_bottom = 959.0
+offset_left = 446.0
+offset_top = 584.0
+offset_right = 619.0
+offset_bottom = 615.0
 text = "Take Card From Deck"
 
 [node name="HeapButton1" type="Button" parent="Buttons"]
-offset_left = 1158.0
-offset_top = 37.0
-offset_right = 1331.0
-offset_bottom = 68.0
+offset_left = 616.0
+offset_top = 32.0
+offset_right = 789.0
+offset_bottom = 63.0
 text = "Put card on heap"
 
 [node name="HeapButton2" type="Button" parent="Buttons"]
-offset_left = 1158.0
-offset_top = 883.0
-offset_right = 1331.0
-offset_bottom = 914.0
+offset_left = 642.0
+offset_top = 539.0
+offset_right = 815.0
+offset_bottom = 570.0
 text = "Put card on heap"
 
 [node name="TableButton1" type="Button" parent="Buttons"]
-offset_left = 1158.0
-offset_top = 84.0
-offset_right = 1307.0
-offset_bottom = 115.0
+offset_left = 640.0
+offset_top = 77.0
+offset_right = 789.0
+offset_bottom = 108.0
 text = "Lay cards on table"
 
 [node name="TableButton2" type="Button" parent="Buttons"]
-offset_left = 1158.0
-offset_top = 928.0
-offset_right = 1307.0
-offset_bottom = 959.0
+offset_left = 642.0
+offset_top = 584.0
+offset_right = 791.0
+offset_bottom = 615.0
 text = "Lay cards on table"
 
 [node name="TradeHeapButton1" type="Button" parent="Buttons"]
-offset_left = 960.0
-offset_top = 128.0
-offset_right = 1058.0
-offset_bottom = 159.0
+offset_left = 448.0
+offset_top = 120.0
+offset_right = 546.0
+offset_bottom = 151.0
 text = "Trade Heap"
 
 [node name="TradeHeapButton2" type="Button" parent="Buttons"]
-offset_left = 962.0
-offset_top = 840.0
-offset_right = 1060.0
-offset_bottom = 871.0
+offset_left = 446.0
+offset_top = 496.0
+offset_right = 544.0
+offset_bottom = 527.0
 text = "Trade Heap"
 
 [node name="DebugButton" type="Button" parent="Buttons"]
-offset_left = 193.0
-offset_top = 209.0
-offset_right = 251.0
-offset_bottom = 240.0
+offset_top = 616.0
+offset_right = 58.0
+offset_bottom = 647.0
 text = "Debug"
 
 [node name="ItemLists" type="Node" parent="."]
 
 [node name="DeckList" type="ItemList" parent="ItemLists"]
-offset_left = 1104.0
-offset_top = 371.0
-offset_right = 1441.0
-offset_bottom = 550.0
+offset_left = 706.0
+offset_top = 235.0
+offset_right = 956.0
+offset_bottom = 385.0
 
 [node name="HeapList" type="ItemList" parent="ItemLists"]
-offset_left = 712.0
-offset_top = 367.0
-offset_right = 1049.0
-offset_bottom = 546.0
+offset_left = 384.0
+offset_top = 239.0
+offset_right = 634.0
+offset_bottom = 389.0
 
 [node name="PlayerOneList" type="ItemList" parent="ItemLists"]
-offset_left = 497.0
-offset_top = 7.0
-offset_right = 834.0
-offset_bottom = 186.0
+offset_left = 58.0
+offset_top = 4.0
+offset_right = 308.0
+offset_bottom = 154.0
 select_mode = 1
 
 [node name="PlayerTwoList" type="ItemList" parent="ItemLists"]
-offset_left = 488.0
-offset_top = 788.0
-offset_right = 825.0
-offset_bottom = 967.0
+offset_left = 64.0
+offset_top = 456.0
+offset_right = 314.0
+offset_bottom = 606.0
 select_mode = 1
 
 [node name="TableList" type="ItemList" parent="ItemLists"]
 offset_left = 64.0
-offset_top = 367.0
-offset_right = 401.0
-offset_bottom = 546.0
-
-[node name="TemporaryNodes" type="Node" parent="."]
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TemporaryNodes"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="TemporaryNodes/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_mjh0c")
-
-[node name="TextureRect2" type="TextureRect" parent="TemporaryNodes/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_mjh0c")
-
-[node name="TextureRect3" type="TextureRect" parent="TemporaryNodes/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_bhtwl")
+offset_top = 239.0
+offset_right = 314.0
+offset_bottom = 389.0
 
 [node name="Player1" parent="." instance=ExtResource("3_a3nih")]
-position = Vector2(900, 50)
+position = Vector2(403, 43)
 
 [node name="Player2" parent="." instance=ExtResource("3_a3nih")]
-position = Vector2(900, 900)
+position = Vector2(384, 556)
 
 [connection signal="pressed" from="Buttons/TurnButton1" to="." method="_on_turn_button_pressed" binds= [0]]
 [connection signal="pressed" from="Buttons/TurnButton2" to="." method="_on_turn_button_pressed" binds= [1]]
