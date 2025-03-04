@@ -84,9 +84,12 @@ func debugInit(debug: bool) -> void:
 	
 	var deck : Deck = Deck.new(!debug)
 	uiLogic = UILogic.new(deck, playerList, $ItemLists/HeapList, $ItemLists/TableList, $ItemLists/DeckList, debug)
-	
-	for card in uiLogic._playerCards[0]:
-		$PlayerOneCardsContainer.add_card(card)
+		
+	for i in 7:
+		$PlayerOneCardsContainer.add_card(uiLogic._playerCards[0][i], 1)
+		
+	for i in range(7, 13):
+		$PlayerOneCardsContainer.add_card(uiLogic._playerCards[0][i], 2)
 	
 	var players : Array[Player]
 	players.append($Player1)
