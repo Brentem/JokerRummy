@@ -12,6 +12,8 @@ const HeapButton := "HeapButton"
 const TableButton := "TableButton"
 const TradeHeapButton := "TradeHeapButton"
 
+var card_scene = preload("res://scenes/card.tscn")
+
 enum Event
 {
 	NoEvent,
@@ -90,6 +92,15 @@ func debugInit(debug: bool) -> void:
 		
 	for i in range(7, 13):
 		$PlayerOneCardsContainer.add_card(uiLogic._playerCards[0][i], 2)
+	
+	var position = Vector2(0.0, 0.0)
+	for i in 13:
+		var card = card_scene.instantiate()
+		var rect = card.get_node("Sprite2D").get_rect()
+		card.SetCardType(uiLogic._playerCards[0][i])
+		card.position = position
+		$CardContainer.add_child(card)
+		position.x = position.x + (rect.size.x + 5)
 	
 	var players : Array[Player]
 	players.append($Player1)
