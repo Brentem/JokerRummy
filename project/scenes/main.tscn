@@ -44,73 +44,78 @@ text = "Table:"
 [node name="Buttons" type="Node" parent="."]
 
 [node name="TurnButton1" type="Button" parent="Buttons"]
-offset_left = 109.0
-offset_top = 48.0
-offset_right = 253.0
-offset_bottom = 79.0
+offset_left = 101.0
+offset_top = 944.0
+offset_right = 245.0
+offset_bottom = 975.0
 text = "End Turn Player 1"
+metadata/_edit_use_anchors_ = true
 
 [node name="TurnButton2" type="Button" parent="Buttons"]
-offset_left = 638.0
-offset_top = 947.0
-offset_right = 782.0
-offset_bottom = 978.0
+offset_left = 94.0
+offset_top = 91.0
+offset_right = 238.0
+offset_bottom = 122.0
 text = "End Turn Player 2"
 
 [node name="DeckButton1" type="Button" parent="Buttons"]
-offset_left = 109.0
-offset_top = 93.0
-offset_right = 282.0
-offset_bottom = 124.0
+offset_left = 101.0
+offset_top = 989.0
+offset_right = 274.0
+offset_bottom = 1020.0
 text = "Take Card From Deck"
+metadata/_edit_use_anchors_ = true
 
 [node name="DeckButton2" type="Button" parent="Buttons"]
-offset_left = 638.0
-offset_top = 992.0
-offset_right = 811.0
-offset_bottom = 1023.0
+offset_left = 94.0
+offset_top = 136.0
+offset_right = 267.0
+offset_bottom = 167.0
 text = "Take Card From Deck"
 
 [node name="HeapButton1" type="Button" parent="Buttons"]
-offset_left = 277.0
-offset_top = 48.0
-offset_right = 450.0
-offset_bottom = 79.0
+offset_left = 269.0
+offset_top = 944.0
+offset_right = 442.0
+offset_bottom = 975.0
 text = "Put card on heap"
+metadata/_edit_use_anchors_ = true
 
 [node name="HeapButton2" type="Button" parent="Buttons"]
-offset_left = 834.0
-offset_top = 947.0
-offset_right = 1007.0
-offset_bottom = 978.0
+offset_left = 290.0
+offset_top = 91.0
+offset_right = 463.0
+offset_bottom = 122.0
 text = "Put card on heap"
 
 [node name="TableButton1" type="Button" parent="Buttons"]
-offset_left = 301.0
-offset_top = 93.0
-offset_right = 450.0
-offset_bottom = 124.0
+offset_left = 293.0
+offset_top = 989.0
+offset_right = 442.0
+offset_bottom = 1020.0
 text = "Lay cards on table"
+metadata/_edit_use_anchors_ = true
 
 [node name="TableButton2" type="Button" parent="Buttons"]
-offset_left = 834.0
-offset_top = 992.0
-offset_right = 983.0
-offset_bottom = 1023.0
+offset_left = 290.0
+offset_top = 136.0
+offset_right = 439.0
+offset_bottom = 167.0
 text = "Lay cards on table"
 
 [node name="TradeHeapButton1" type="Button" parent="Buttons"]
-offset_left = 109.0
-offset_top = 136.0
-offset_right = 207.0
-offset_bottom = 167.0
+offset_left = 101.0
+offset_top = 1032.0
+offset_right = 199.0
+offset_bottom = 1063.0
 text = "Trade Heap"
+metadata/_edit_use_anchors_ = true
 
 [node name="TradeHeapButton2" type="Button" parent="Buttons"]
-offset_left = 638.0
-offset_top = 904.0
-offset_right = 736.0
-offset_bottom = 935.0
+offset_left = 94.0
+offset_top = 48.0
+offset_right = 192.0
+offset_bottom = 79.0
 text = "Trade Heap"
 
 [node name="DebugButton" type="Button" parent="Buttons"]
@@ -134,16 +139,18 @@ offset_right = 896.0
 offset_bottom = 469.0
 
 [node name="PlayerOneList" type="ItemList" parent="ItemLists"]
-offset_left = -256.0
-offset_right = -6.0
-offset_bottom = 150.0
+offset_left = -264.0
+offset_top = 896.0
+offset_right = -14.0
+offset_bottom = 1046.0
 select_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerTwoList" type="ItemList" parent="ItemLists"]
-offset_left = 256.0
-offset_top = 872.0
-offset_right = 506.0
-offset_bottom = 1022.0
+offset_left = -288.0
+offset_top = 16.0
+offset_right = -38.0
+offset_bottom = 166.0
 select_mode = 1
 
 [node name="TableList" type="ItemList" parent="ItemLists"]
@@ -153,30 +160,24 @@ offset_right = 314.0
 offset_bottom = 389.0
 
 [node name="PlayerOneCardsContainer" type="MarginContainer" parent="."]
-offset_left = 1160.0
-offset_top = 280.0
-offset_right = 1860.0
-offset_bottom = 580.0
+offset_left = 536.0
+offset_top = 816.0
+offset_right = 1336.0
+offset_bottom = 966.0
 script = ExtResource("2_2esfj")
 card_scene = ExtResource("3_o5ij3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerOneCardsContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerOneCardsContainer"]
 layout_mode = 2
 
-[node name="RowContainer1" type="HBoxContainer" parent="PlayerOneCardsContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="RowContainer2" type="HBoxContainer" parent="PlayerOneCardsContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerOneCardsContainer/ScrollContainer"]
 layout_mode = 2
 
 [node name="Player1" parent="." instance=ExtResource("3_a3nih")]
-position = Vector2(64, 59)
+position = Vector2(56, 968)
 
 [node name="Player2" parent="." instance=ExtResource("3_a3nih")]
-position = Vector2(576, 964)
-
-[node name="CardContainer" type="Node2D" parent="."]
-position = Vector2(520, 93)
+position = Vector2(64, 64)
 
 [connection signal="pressed" from="Buttons/TurnButton1" to="." method="_on_turn_button_pressed" binds= [0]]
 [connection signal="pressed" from="Buttons/TurnButton2" to="." method="_on_turn_button_pressed" binds= [1]]
