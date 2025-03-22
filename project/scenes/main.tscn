@@ -179,6 +179,14 @@ position = Vector2(56, 968)
 [node name="Player2" parent="." instance=ExtResource("3_a3nih")]
 position = Vector2(64, 64)
 
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="Buttons/TurnButton1" to="." method="_on_turn_button_pressed" binds= [0]]
 [connection signal="pressed" from="Buttons/TurnButton2" to="." method="_on_turn_button_pressed" binds= [1]]
 [connection signal="pressed" from="Buttons/DeckButton1" to="." method="_on_action_button_pressed" binds= ["DeckButton", 0]]

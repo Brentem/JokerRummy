@@ -14,6 +14,8 @@ const TradeHeapButton := "TradeHeapButton"
 
 var card_scene = preload("res://scenes/card.tscn")
 
+@onready var player_one_card_container = $PlayerOneCardsContainer
+
 enum Event
 {
 	NoEvent,
@@ -86,9 +88,10 @@ func debugInit(debug: bool) -> void:
 	
 	var deck : Deck = Deck.new(!debug)
 	uiLogic = UILogic.new(deck, playerList, $ItemLists/HeapList, $ItemLists/TableList, $ItemLists/DeckList, debug)
-		
+	
+	player_one_card_container.reset()	
 	for i in 13:
-		$PlayerOneCardsContainer.add_card(uiLogic._playerCards[0][i])
+		player_one_card_container.add_card(uiLogic._playerCards[0][i])
 
 	
 	var players : Array[Player]
