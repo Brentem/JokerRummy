@@ -5,6 +5,7 @@ extends MarginContainer
 const CardInfo = CardTypes.CardInfo
 
 var selectedId = 0;
+var selected_card_ids : Array[int]
 
 var counter = 0
 
@@ -28,7 +29,15 @@ func reset() -> void:
 	for child in children:
 		$ScrollContainer/HBoxContainer.remove_child(child)
 
+func get_card_ids() -> Array[int]:
+	selected_card_ids.sort()
+	return selected_card_ids
+
 func _gui_input_card(event: InputEvent, id: int) -> void:
-	selectedId = id
-	if event.is_pressed():
-		pass
+	if event.is_pressed() == false:
+		return
+	
+	if selected_card_ids.has(id):
+		selected_card_ids.erase(id)
+	else:
+		selected_card_ids.append(id)

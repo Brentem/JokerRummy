@@ -47,6 +47,8 @@ func _process(delta):
 			gameOver = true
 			winnerId = i
 	
+	uiLogic.set_hand_gui_ids(player_one_card_container.get_card_ids())
+	
 	if !gameOver:
 		var event : Event = Event.NoEvent if eventQueue.is_empty() else eventQueue.pop_front()
 		playerStateMachine.Run(event)

@@ -18,6 +18,9 @@ var _deckList : ItemList
 
 var _load : bool = true;
 
+# Probably temporary
+var _gui_card_ids : Array[int]
+
 func _init(deck: Deck, playerList : Array[ItemList],
  heapList: ItemList, tableList: ItemList, 
  deckList: ItemList, debug: bool):
@@ -82,6 +85,9 @@ func LayCardsOnTable(playerId: int) -> void:
 	var cardIds := playerCardsSelected(playerId)
 	var cards : Array[CardInfo]
 	
+	if playerId == 0:
+		cardIds = _gui_card_ids
+	
 	for cardId in cardIds:
 		cards.append(createCardInfoCopy(_playerCards[playerId][cardId]))
 	
@@ -117,6 +123,9 @@ func Reset() -> void:
 	
 	for playerList in _playerList:
 		playerList.clear()
+
+func set_hand_gui_ids(card_ids: Array[int]) -> void: # Probably temporary
+	_gui_card_ids = card_ids
 
 # Private functions:
 func playerCardSelected(playerId: int) -> int:
